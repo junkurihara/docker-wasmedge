@@ -1,0 +1,10 @@
+services:
+  app:
+    image: jqtype/docker-wasmedge
+    platform: wasi/wasm
+    runtime: io.containerd.wasmedge.v1
+    restart: always
+    build:
+      context: ./
+    ports:
+      - 127.0.0.1:8080:8080
