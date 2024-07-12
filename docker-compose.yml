@@ -1,10 +1,24 @@
 services:
   app:
-    image: jqtype/docker-wasmedge
+    image: jqtype/wasmedge-native
+    container_name: app-native
+    platform: linux/aarch64
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    entrypoint: ["/bin/sh", "-c", "'/docker-native'"]
+    ports:
+      - 127.0.0.1:8080:8080
+
+  app-wasmedge:
+    image: jqtype/wasmedge-wasi
+    container_name: app-wasmedge
     platform: wasi/wasm
     runtime: io.containerd.wasmedge.v1
     restart: always
     build:
       context: ./
+      dockerfile: ./Dockerfile.wasmedge
     ports:
-      - 127.0.0.1:8080:8080
+      - 127.0.0.1:8081:8080
