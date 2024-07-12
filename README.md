@@ -6,6 +6,9 @@ Sample project for docker with wasmedge development projects
 
 See [`bench.sh`](./bench.sh) for the benchmark script.
 
+- Macbook Pro 2021 (M1 Max, RAM64GB)
+- Docker for Mac v4.32.0
+
 ### Latency
 
 We evaluated the latency of the server by simply sending a request to get a kind of echo response, where 512 requests were sent concurrently. The latency can be estimated as the number of requests processed per second.
