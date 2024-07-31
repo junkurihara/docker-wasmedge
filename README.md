@@ -173,7 +173,6 @@ Benchmarking 8 connections @ http://localhost:8080/heavy for 15 second(s)
 
 ---
 
-
 ### amd64 docker
 
 - iMac 2020 (Intel Core i9, RAM128GB)
