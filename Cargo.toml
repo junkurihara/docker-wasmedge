@@ -1,31 +1,21 @@
-[package]
-name = "docker-wasmedge"
-authors = ["Jun Kurihara"]
+[workspace.package]
 version = "0.1.0"
+authors = ["Jun Kurihara"]
+homepage = "https://github.com/junkurihara/docker-wasmedge"
+repository = "https://github.com/junkurihara/docker-wasmedge"
+license = "MIT"
+readme = "./README.md"
 edition = "2021"
+publish = false
 
-[dependencies]
-anyhow = "1.0.86"
+[workspace]
+members = ["wasmedge"]
+resolver = "2"
 
-[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-hyper = { version = "1.4.1", default-features = false }
-hyper-util = { version = "0.1.6", features = ["full"] }
-tokio = { version = "1.38.0", default-features = false, features = [
-  "net",
-  "rt-multi-thread",
-  "time",
-  "sync",
-  "macros",
-  "fs",
-] }
-
-[target.'cfg(target_arch = "wasm32")'.dependencies]
-hyper_wasi = { version = "0.15.2", features = ["full"] }
-tokio_wasi = { version = "1.25.2", default-features = false, features = [
-  "net",
-  "rt-multi-thread",
-  "time",
-  "sync",
-  "macros",
-  "fs",
-] }
+[profile.release]
+codegen-units = 1
+incremental = false
+lto = "fat"
+opt-level = 3
+panic = "abort"
+strip = true

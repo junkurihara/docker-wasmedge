@@ -55,7 +55,7 @@ async fn handle_request(_req: Request<Incoming>) -> anyhow::Result<Response<Stri
 
 #[cfg(target_arch = "wasm32")]
 async fn handle_request(_req: Request<Body>) -> anyhow::Result<Response<String>> {
-  println!("Handling request: {:?}", _req);
+  // println!("Handling request: {:?}", _req);
   handler_inner(_req).await
 }
 

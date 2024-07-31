@@ -2,7 +2,7 @@ services:
   app:
     image: jqtype/wasmedge-native
     container_name: app-native
-#    platform: linux/aarch64
+    #    platform: linux/aarch64
     platform: linux/amd64
     restart: always
     build:
@@ -17,9 +17,23 @@ services:
     container_name: app-wasmedge
     platform: wasi/wasm
     runtime: io.containerd.wasmedge.v1
+    # runtime: io.containerd.wasmer.v1
+    # runtime: io.containerd.wasmtime.v1
     restart: always
     build:
       context: ./
       dockerfile: ./Dockerfile.wasmedge
     ports:
       - 127.0.0.1:8081:8080
+
+  app-wasmedge-aot:
+    image: jqtype/wasmedge-wasi-aot
+    container_name: app-wasmedge-aot
+    platform: wasi/wasm
+    runtime: io.containerd.wasmedge.v1
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.wasmedge-aot
+    ports:
+      - 127.0.0.1:8082:8080
